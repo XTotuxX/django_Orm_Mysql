@@ -26,8 +26,8 @@ python -m pip install -r requirements.txt
 
 ## Configuración de MySQL
 
-Inicia MySQL y crea una base de datos llamada `adso_django_Orm` (por ejemplo,
-desde DBeaver). La aplicación lee la conexión desde estas variables de
+Inicia MySQL y crea una base de datos llamada `adso_django_Orm` 
+desde DBeaver. La aplicación lee la conexión desde estas variables de
 entorno; ajusta sus valores a tu instalación.
 
 
