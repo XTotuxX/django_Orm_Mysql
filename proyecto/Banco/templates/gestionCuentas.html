@@ -1,0 +1,75 @@
+<!doctype html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>..:: Gestión de Cuentas ::..</title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="page-container">
+      
+      <!-- Sección del Formulario -->
+      <div class="card form-card">
+        <h2>Registrar Nueva Cuenta</h2>
+        <form method="POST" action="{% url 'registrar_cuenta' %}" class="account-form">
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label for="txtTipoCuenta">Tipo Cuenta (Número):</label>
+            <input type="number" id="txtTipoCuenta" name="txtTipoCuenta" required />
+          </div>
+
+          <div class="form-group">
+            <label for="txtDescripcion">Descripción:</label>
+            <input type="text" id="txtDescripcion" name="txtDescripcion" required />
+          </div>
+
+          <div class="form-group">
+            <label for="txtSaldo">Saldo Inicial:</label>
+            <input type="number" step="0.01" id="txtSaldo" name="txtSaldo" required />
+          </div>
+
+          <button type="submit" class="btn btn-primary">Guardar Cuenta</button>
+        </form>
+      </div>
+
+      <!-- Sección de la Tabla -->
+      <div class="card table-card">
+        <h1>Lista de Cuentas</h1>
+
+        <div class="table-responsive">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Saldo</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for cuenta in cuentas %}
+              <tr>
+                <td>{{ cuenta.id }}</td>
+                <td>{{ cuenta.descripcion }}</td>
+                <td>${{ cuenta.saldo }}</td>
+                <td class="actions-cell">
+                  <a href="{% url 'actualizar_cuenta' cuenta.id %}" class="btn-action update" title="Actualizar">🔄</a>
+                  <a href="{% url 'eliminar_cuenta' cuenta.id %}" class="btn-action delete" onclick="return confirm('¿Estás seguro de que deseas eliminar esta cuenta?')" title="Eliminar">❌</a>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="4" class="empty-row">No hay cuentas registradas.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

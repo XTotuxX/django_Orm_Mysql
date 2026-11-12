@@ -1,0 +1,34 @@
+
+# 1. Entornos virtuales y Python
+
+venv/
+env/
+.venv/
+Include/
+Lib/
+Scripts/
+pyvenv.cfg
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# 2. Django: Configuración local y datos
+
+.env
+.env.*
+!.env.example
+local_settings.py
+*.log
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+
+# 3. Sistema Operativo y Editores
+
+.DS_Store
+Thumbs.db
+.vscode/

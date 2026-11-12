@@ -1,0 +1,40 @@
+<!doctype html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>..::Actualizar Cuenta::..</title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  </head>
+  <body>
+
+    <!-- Contenedor general que da la forma de tarjeta -->
+    <div class="card form-card">
+      <h2>Actualizar Cuenta</h2>
+      
+      <!-- El formulario envía los datos mediante POST -->
+      <form method="POST" action="{% url 'actualizar_cuenta' cuenta.id %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label>Tipo Cuenta (Número):</label>
+          <input type="number" name="txtTipoCuenta" value="{{ cuenta.tipo_cuenta }}" required />
+        </div>
+
+        <div class="form-group">
+          <label>Descripción:</label>
+          <input type="text" name="txtDescripcion" value="{{ cuenta.descripcion }}" required />
+        </div>
+
+        <div class="form-group">
+          <label>Saldo Inicial:</label>
+          <input type="number" step="0.01" name="txtSaldo" value="{{ cuenta.saldo }}" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary" onclick="return confirm('¿Estás seguro que deseas actualizar esta cuenta?')">Guardar Cambios</button>
+      </form>
+    </div>
+
+  </body>
+</html>
